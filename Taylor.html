@@ -34,6 +34,14 @@
             border-bottom: 2px solid #ddd;
             padding-bottom: 5px;
         }
+        .note {
+            background: #e7f3fe;
+            color: #2b7bb9;
+            border-left: 5px solid #2b7bb9;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
         footer {
             text-align: center;
             margin-top: 30px;
@@ -86,15 +94,41 @@
             f(x) = f(a) + \frac{f^{(n)}(a)}{n!}(x-a)^n + O((x-a)^{n})
             \]
         </p>
+
+        <h3>\( f^{(n)}(a) > 0 \) の場合</h3>
+        <p>主要項は次のように正となります：</p>
         <p>
-            - \( f^{(n)}(a) > 0 \): \( f(x) \) は \( x = a \) を通過し上昇します。<br>
-            - \( f^{(n)}(a) < 0 \): \( f(x) \) は \( x = a \) を通過し下降します。
+            \[
+            f(x) \approx \frac{f^{(n)}(a)}{n!}(x-a)^n
+            \]
         </p>
+        <p>
+            - \( x < a \): \( f(x) < f(a) \)<br>
+            - \( x > a \): \( f(x) > f(a) \)
+        </p>
+        <div class="note">
+            <strong>結論:</strong> \( x = a \) は極小のように見えますが、通過して上昇していく形になります。
+        </div>
+
+        <h3>\( f^{(n)}(a) < 0 \) の場合</h3>
+        <p>主要項は次のように負となります：</p>
+        <p>
+            \[
+            f(x) \approx \frac{f^{(n)}(a)}{n!}(x-a)^n
+            \]
+        </p>
+        <p>
+            - \( x < a \): \( f(x) > f(a) \)<br>
+            - \( x > a \): \( f(x) < f(a) \)
+        </p>
+        <div class="note">
+            <strong>結論:</strong> \( x = a \) は極大に見えますが、通過して下降していく形になります。
+        </div>
         <p>結論として、\( n \) が奇数の場合、\( f(x) \) は \( x = a \) で極値を持たず、単調に変化します。</p>
     </div>
 
     <footer>
-        © 2024 テイラーと関数のふるまい
+        © 2024 テイラーと関数の振る舞い
     </footer>
 </body>
 </html>
