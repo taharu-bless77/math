@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>広義積分の問題</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        h3 {
+            color: #2a9df4;
+        }
+        .equation {
+            border: 1px solid #ddd;
+            padding: 8px;
+            background-color: #f9f9f9;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<h1>広義積分の問題</h1>
+<p>
+    広義積分（不定積分）の場合、積分領域における特異点や無限に発散する部分が存在する場合、ε-δ（ε-エプシロン）を用いて積分を定義し、極限を取ることで積分値を求めます。今回の問題では、積分領域が \( x = 0 \) で特異点を持つ可能性があるため、εを導入して積分を評価します。
+</p>
+<h3>問題設定</h3>
+<p>
+    与えられた積分は次の通りです：
+</p>
+<div class="equation">
+    \( I = \iint_{D} \frac{x}{x^2 + y^2} \, dx \, dy \)
+</div>
+<p>
+    積分領域 \( D \) は次のように定義されています：
+</p>
+<div class="equation">
+    \( 0 \leq x \leq 1,\quad x^2 \leq y \leq x \)
+</div>
+<h3>広義積分としての定義</h3>
+<p>
+    \( x = 0 \) で分母が \( x^2 + y^2 = y^2 \) となるため、特異点が存在します。このため、\( x \) の下限を \( \epsilon \) （\( \epsilon > 0 \)）とし、最終的に \( \epsilon \to 0^+ \) を考えます。
+</p>
+<div class="equation">
+    \( I = \lim_{\epsilon \to 0^+} \int_{\epsilon}^{1} \int_{x^2}^{x} \frac{x}{x^2 + y^2} \, dy \, dx \)
+</div>
+<h3>内部積分の計算</h3>
+<p>
+    まず、内部積分（\( y \) に関する積分）を計算します：
+</p>
+<div class="equation">
+    \( I_{\text{内部}} = \int_{x^2}^{x} \frac{x}{x^2 + y^2} \, dy \)
+</div>
+<p>
+    置換 \( u = \frac{y}{x} \) を行います。すると、
+</p>
+<div class="equation">
+    \( y = u x,\quad dy = x \, du \)
+</div>
+<p>
+    積分範囲も変わります：
+</p>
+<div class="equation">
+    \( y = x^2 \Rightarrow u = \frac{x^2}{x} = x,\quad y = x \Rightarrow u = 1 \)
+</div>
+<p>
+    したがって、
+</p>
+<div class="equation">
+    \( I_{\text{内部}} = \int_{x}^{1} \frac{x^2}{x^2(1 + u^2)} \, du = \int_{x}^{1} \frac{1}{1 + u^2} \, du \)
+</div>
+<p>
+    この積分は標準的な逆正接関数の積分です：
+</p>
+<div class="equation">
+    \( \int \frac{1}{1 + u^2} \, du = \arctan(u) \)
+</div>
+<p>
+    従って、
+</p>
+<div class="equation">
+    \( I_{\text{内部}} = \arctan(1) - \arctan(x) = \frac{\pi}{4} - \arctan(x) \)
+</div>
+<h3>外部積分の計算</h3>
+<p>
+    内部積分の結果を用いて、外部積分を評価します：
+</p>
+<div class="equation">
+    \( I = \lim_{\epsilon \to 0^+} \int_{\epsilon}^{1} \left( \frac{\pi}{4} - \arctan(x) \right) \, dx = \lim_{\epsilon \to 0^+} \left( \frac{\pi}{4} \int_{\epsilon}^{1} dx - \int_{\epsilon}^{1} \arctan(x) \, dx \right) \)
+</div>
+<p>それぞれの積分を計算します。</p>
+<ol>
+    <li>
+        <strong>定数項の積分：</strong>
+        <div class="equation">
+            \( \frac{\pi}{4} \int_{\epsilon}^{1} dx = \frac{\pi}{4} (1 - \epsilon) \)
+        </div>
+    </li>
+    <li>
+        <strong>\( \arctan(x) \) の積分：</strong>
+        <div class="equation">
+            \( \int \arctan(x) \, dx = x \arctan(x) - \frac{1}{2} \ln(1 + x^2) + C \)
+        </div>
+        <div class="equation">
+            \( \int_{\epsilon}^{1} \arctan(x) \, dx = \left[ x \arctan(x) - \frac{1}{2} \ln(1 + x^2) \right]_{\epsilon}^{1} = \left( \frac{\pi}{4} - \frac{1}{2} \ln 2 \right) - \left( \epsilon \arctan(\epsilon) - \frac{1}{2} \ln(1 + \epsilon^2) \right) \)
+        </div>
+    </li>
+</ol>
+<h3>全体の積分 I の評価</h3>
+<p>これらをまとめると、</p>
+<div class="equation">
+    \( I = \lim_{\epsilon \to 0^+} \left[ \frac{\pi}{4} (1 - \epsilon) - \left( \frac{\pi}{4} - \frac{1}{2} \ln 2 - \epsilon \arctan(\epsilon) + \frac{1}{2} \ln(1 + \epsilon^2) \right) \right] \)
+</div>
+<p>展開すると、</p>
+<div class="equation">
+    \( I = \lim_{\epsilon \to 0^+} \left( \frac{\pi}{4} - \frac{\pi}{4} \epsilon - \frac{\pi}{4} + \frac{1}{2} \ln 2 + \epsilon \arctan(\epsilon) - \frac{1}{2} \ln(1 + \epsilon^2) \right) \)
+</div>
+<p>項ごとに整理します：</p>
+<div class="equation">
+17:52
+\( I = \frac{1}{2} \ln 2 + \lim_{\epsilon \to 0^+} \left( -\frac{\pi}{4} \epsilon + \epsilon \arctan(\epsilon) - \frac{1}{2} \ln(1 + \epsilon^2) \right) \)
+</div>
+<p>各項の極限を評価します：</p>
+<ul>
+    <li><span class="equation">\( \lim_{\epsilon \to 0^+} \left( -\frac{\pi}{4} \epsilon \right) = 0 \)</span></li>
+    <li><span class="equation">\( \lim_{\epsilon \to 0^+} \left( \epsilon \arctan(\epsilon) \right) = 0 \)</span> </li>
+    <li><span class="equation">\( \lim_{\epsilon \to 0^+} \left( -\frac{1}{2} \ln(1 + \epsilon^2) \right) = -\frac{1}{2} \ln(1) = 0 \)</span></li>
+</ul>
+<p>したがって、</p>
+<div class="equation">
+    \( I = \frac{1}{2} \ln 2 \)
+</div>
+<h3>結論</h3>
+<p>
+    広義積分としてεを導入し、極限を取ることで評価した結果、積分値は以下の通りです。
+</p>
+<div class="equation">
+    \( \boxed{\frac{1}{2} \ln 2} \)
+</div>
+</body>
+</html>
